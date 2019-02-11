@@ -20,6 +20,41 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('home');
+		$this->render_page();
 	}
+
+	public function render_page() {
+
+        $this->load->helper('url');
+        $this->load->helper('html');
+
+        echo doctype('html5');
+        echo meta('X-UA-Compatible', 'IE=edge; charset=utf-8', 'equiv');
+        echo meta('description', 'We Understand. We Care.');
+        echo meta('author', 'WJD');
+        echo meta('viewport', 'width=device-width, initial-scale=1');
+
+        $base_url = base_url();
+        echo <<<EOD
+			<title>Rodeo-X</title>
+			<script>
+				var app_base_url = "{$base_url}";
+			</script>
+EOD;
+        echo link_tag(base_url('bootstrap/css/bootstrap.min.css'));
+
+        echo link_tag(base_url('assets/images/favicon.ico'), 'shortcut icon', 'image/ico');
+
+        echo '<body><div id="wrapper"  >';
+
+        $this->load->view('home');
+
+        $this->load->view('js_scripts');
+
+        echo '</div></body>';
+
+
+
+    }
+
 }
